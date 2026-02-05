@@ -1,8 +1,10 @@
 package com.example.codepathmail
+import android.graphics.Color
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 
 class EmailAdapter(private val emails: List<Email>): RecyclerView.Adapter<EmailAdapter.ViewHolder>() {
@@ -15,6 +17,7 @@ class EmailAdapter(private val emails: List<Email>): RecyclerView.Adapter<EmailA
         val inflator = LayoutInflater.from(context)
 
         val contactView = inflator.inflate(R.layout.email_item, parent, false)
+
         return ViewHolder(contactView)
     }
 
@@ -23,10 +26,16 @@ class EmailAdapter(private val emails: List<Email>): RecyclerView.Adapter<EmailA
         position: Int
     ) {
         val email = emails.get(position)
+        holder.imageView.setImageResource(R.drawable.img)
+
         holder.senderTextView.text = email.sender
         holder.titleTextView.text = email.title
         holder.summaryTextView.text = email.summary
+
+
     }
+
+
 
     override fun getItemCount(): Int {
         return emails.size
@@ -42,12 +51,17 @@ class EmailAdapter(private val emails: List<Email>): RecyclerView.Adapter<EmailA
         val titleTextView: TextView
         val summaryTextView: TextView
 
+        val imageView:ImageView
+
         init {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             senderTextView = itemView.findViewById(R.id.senderTv)
             titleTextView = itemView.findViewById(R.id.titleTv)
             summaryTextView = itemView.findViewById(R.id.summaryTv)
+            imageView = itemView.findViewById(R.id.imageView2)
+
+
         }
 
     }

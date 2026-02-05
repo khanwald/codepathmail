@@ -1,6 +1,7 @@
 package com.example.codepathmail
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,6 +25,14 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        val button = findViewById<Button>(R.id.button3)
+
+
+        button.setOnClickListener {
+            (emails as MutableList<Email>).addAll(EmailFetcher.getNext5Emails())
+            val index= adapter.itemCount
+            adapter.notifyItemInserted(index)
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
